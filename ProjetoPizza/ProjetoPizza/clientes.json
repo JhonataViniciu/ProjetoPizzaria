@@ -1,0 +1,44 @@
+[
+  {
+    "codigo": "123244",
+    "nome": "Ricardo",
+    "telefone": "112424244",
+    "endereco": "Rua do Fulano",
+    "status": "inativo"
+  },
+  {
+    "codigo": "36363363",
+    "nome": "Arthur",
+    "telefone": "1153754444",
+    "endereco": "Rua do Fulano 2",
+    "status": "inativo"
+  },
+  {
+    "codigo": "35",
+    "nome": "Edsandro Alves",
+    "telefone": "(11) 93035-1159",
+    "endereco": "16400000",
+    "status": "ativo"
+  },
+  {
+    "codigo": "36",
+    "nome": "marcelo",
+    "telefone": "9999",
+    "endereco": "ruab",
+    "status": "ativo"
+  },
+  {
+    "codigo": "37",
+    "nome": "joao",
+    "telefone": "8888",
+    "endereco": "rua",
+    "status": "ativo"
+  },
+  {
+    "codigo": "53",
+    "nome": "jhoww",
+    "telefone": "11995095434",
+    "endereco": "Rua Obrages, 11",
+    "status": "ativo"
+  }
+]

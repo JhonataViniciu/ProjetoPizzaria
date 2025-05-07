@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/style.css">
+  <title>Cadastro do cliente</title>
+  <style>
+    body {
+  font-family: Arial, sans-serif;
+  background-color: #fff8f0;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: #d35400;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+h2 {
+  color: #d35400;
+  text-align: center;
+  margin-top: 20px;
+}
+
+nav {
+  background-color: #fcefe3;
+  padding: 10px;
+  text-align: center;
+}
+
+nav a {
+  margin: 0 15px;
+  text-decoration: none;
+  font-weight: bold;
+  color: #333;
+}
+
+form {
+  background-color: white;
+  max-width: 500px;
+  margin: 20px auto;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+form label {
+  display: block;
+  text-align: left;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+form input, form select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  box-sizing: border-box;
+}
+
+form button {
+  padding: 10px 20px;
+  background-color: #27ae60;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+form button:hover {
+  background-color: #219150;
+}
+
+#pesquisa {
+  width: 300px;
+  max-width: 90%;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+#clientesLista {
+  max-width: 800px;
+  margin: 0 auto 40px;
+  padding: 0 20px;
+}
+
+.cliente {
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  text-align: left;
+}
+
+.cliente button {
+  margin-top: 10px;
+  padding: 8px 12px;
+  background-color: #e67e22;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+}
+
+.cliente button:hover {
+  background-color: #cf711f;
+}
+
+.pesquisa-container {
+  text-align: center;
+  margin: 30px auto;
+}
+
+.listar-container {
+  text-align: center;
+  margin: 30px auto;
+} 
+
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="cadastroCliente.html">Clientes</a>
+    <a href="catalogoPizzas.html">Catálogo</a>
+    <a href="cadastroPedido.html">Pedidos</a>
+    <a href="historicoCliente.html">Histórico</a>
+  </nav>
+
+  <header>
+    <h1>Cadastro de Clientes</h1>
+  </header>
+
+  <form id="clienteForm">
+    <label>Código:</label>
+    <input type="text" id="codigo" required>
+
+    <label>Nome:</label>
+    <input type="text" id="nome" required>
+
+    <label>Telefone:</label>
+    <input type="text" id="telefone" required>
+
+    <label>Endereço:</label>
+    <input type="text" id="endereco" required>
+
+    <label>Status:</label>
+    <select id="status">
+      <option value="ativo">Ativo</option>
+      <option value="inativo">Inativo</option>
+    </select><br><br>
+
+    <button type="submit">Salvar Cliente</button>
+  </form>
+
+  <div class="pesquisa-container">
+    <h2>Pesquisar Cliente</h2>
+    <input type="text" id="pesquisa" placeholder="Nome ou telefone">
+    <button onclick="pesquisarCliente()">Pesquisar</button>
+  </div>
+  
+  <div class="listar-container">
+    <h2>Lista de Clientes</h2>
+    <button onclick="listarClientes()">Atualizar Lista</button>
+  </div>
+
+  <div id="clientesLista"></div>
+
+  <script>
+    const API_URL = 'http://localhost:3000/clientes';
+
+    document.getElementById('clienteForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      const codigo = document.getElementById('codigo').value;
+      const nome = document.getElementById('nome').value;
+      const telefone = document.getElementById('telefone').value;
+      const endereco = document.getElementById('endereco').value;
+      const status = document.getElementById('status').value;
+
+      fetch(`${API_URL}/${codigo}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ nome, telefone, endereco, status })
+      })
+      .then(response => response.json())
+      .then(data => {
+        alert(data.mensagem);
+        listarClientes();
+        document.getElementById('clienteForm').reset();
+      });
+    });
+
+    function listarClientes() {
+      console.log('Iniciando listagem de clientes...');
+      fetch(API_URL)
+        .then(res => {
+          console.log('Resposta recebida, status:', res.status);
+
+          if (!res.ok) {
+                throw new Error(`HTTP error! status: ${res.status}`);
+            }
+            return res.json();
+        })
+        .then(clientes => {
+          const lista = document.getElementById('clientesLista');
+          lista.innerHTML = '';
+          clientes.forEach(cliente => {
+            const div = document.createElement('div');
+            div.className = 'cliente';
+            div.innerHTML = `
+              <strong>${cliente.nome}</strong><br>
+              Código: ${cliente.codigo}<br>
+              Telefone: ${cliente.telefone}<br>
+              Endereço: ${cliente.endereco}<br>
+              Status: ${cliente.status}<br>
+              <button onclick="desativarCliente('${cliente.codigo}')">Desativar</button>
+            `;
+          // const div = document.createElement('div');
+          //       div.className = 'cliente';
+          //       div.innerHTML = `
+          //           <strong>${cliente.nome}</strong><br>
+          //           Código: ${cliente.codigo}<br>
+          //           Telefone: ${cliente.telefone}<br>
+          //           Endereço: ${cliente.endereco}<br>
+          //           Status: ${cliente.status}<br>
+          //           <button onclick="desativarCliente('${cliente.codigo}')">Desativar</button>`;
+
+            lista.appendChild(div);
+          });
+        })
+
+      };
+    
+
+    function pesquisarCliente() {
+      const termo = document.getElementById('pesquisa').value.toLowerCase();
+      fetch(API_URL)
+        .then(res => res.json())
+        .then(clientes => {
+          const lista = document.getElementById('clientesLista');
+          lista.innerHTML = '';
+
+          const filtrados = clientes.filter(c =>
+            c.nome.toLowerCase().includes(termo) || c.telefone.includes(termo)
+          );
+
+          if (filtrados.length === 0) {
+            lista.innerHTML = '<p>Nenhum cliente encontrado.</p>';
+            return;
+          }
+
+          filtrados.forEach(cliente => {
+            const div = document.createElement('div');
+            div.className = 'cliente';
+            div.innerHTML = `
+              <strong>${cliente.nome}</strong><br>
+              Código: ${cliente.codigo}<br>
+              Telefone: ${cliente.telefone}<br>
+              Endereço: ${cliente.endereco}<br>
+              Status: ${cliente.status}<br>
+              <button onclick="desativarCliente('${cliente.codigo}')">Desativar</button>
+            `;
+            lista.appendChild(div);
+          });
+        });
+    };
+
+    function desativarCliente(codigo) {
+      fetch(`${API_URL}/${codigo}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ status: 'inativo' })
+      })
+      .then(res => res.json())
+      .then(data => {
+        alert(data.mensagem);
+        listarClientes();
+      });
+    };
+
+    listarClientes();
+
+  </script>
+</body>
+</html>

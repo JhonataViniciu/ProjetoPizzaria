@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro de Pedidos</title>
+  <style>
+    <style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f6f6f6;
+  }
+
+  nav {
+    background-color: #333;
+    padding: 15px 0;
+    text-align: center;
+  }
+
+  nav a {
+    margin: 0 15px;
+    text-decoration: none;
+    font-weight: bold;
+    color: white;
+    font-size: 16px;
+  }
+
+  nav a:hover {
+    text-decoration: underline;
+  }
+
+  h1, h2 {
+    color: #333;
+    text-align: center;
+    margin-top: 30px;
+  }
+
+  form {
+    background-color: white;
+    max-width: 500px;
+    margin: 30px auto;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  label {
+    display: block;
+    margin-top: 15px;
+    text-align: left;
+    color: #444;
+    font-weight: bold;
+  }
+
+  input, select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+  }
+
+  button {
+    padding: 10px 20px;
+    background-color: #27ae60;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 20px;
+  }
+
+  button:hover {
+    background-color: #219150;
+  }
+
+  .pedido {
+    background-color: white;
+    max-width: 500px;
+    margin: 15px auto;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    text-align: left;
+  }
+
+  #pedidosLista {
+    margin-bottom: 50px;
+  }
+
+  .btn-atualizar {
+    display: block;
+    margin: 0 auto;
+    background-color: #3498db;
+  }
+
+  .btn-atualizar:hover {
+    background-color: #2980b9;
+  }
+
+  .btn-atualizar2 {
+    text-align: center;
+  }
+</style>
+
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="cadastroCliente.html">Clientes</a>
+    <a href="catalogoPizzas.html">Catálogo</a>
+    <a href="cadastroPedido.html">Pedidos</a>
+    <a href="historicoCliente.html">Histórico</a>
+  </nav>
+
+  <h1>Cadastro de Pedidos</h1>
+
+  <form id="pedidoForm">
+    <label>Código do Pedido:</label>
+    <input type="text" id="codigoPedido" required>
+
+    <label>Código do Cliente:</label>
+    <input type="text" id="codigoCliente" required>
+
+    <label>Descrição:</label>
+    <input type="text" id="descricao" required>
+
+    <label>Valor:</label>
+    <input type="number" id="valor" required>
+
+    <label>Status:</label>
+    <select id="statusPedido">
+      <option value="aberto">Pedido feito aguardando pagamento</option>
+      <option value="em andamento">Pedido pago e em preparação</option>
+      <option value="finalizado">Pedido atendido e entregue</option>
+    </select><br><br>
+
+    <button type="submit">Salvar Pedido</button>
+  </form>
+
+  <h2>Lista de Pedidos</h2>
+  <div class="btn-atualizar2">
+    <button onclick="listarPedidos()">Atualizar Lista</button>
+  </div>
+  <div id="pedidosLista"></div>
+
+  <script>
+    const API_PEDIDOS = 'http://localhost:3306/pedidos';
+
+    document.getElementById('pedidoForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      const codigoPedido = document.getElementById('codigoPedido').value;
+      const codigoCliente = document.getElementById('codigoCliente').value;
+      const descricao = document.getElementById('descricao').value;
+      const valor = document.getElementById('valor').value;
+      const statusPedido = document.getElementById('statusPedido').value;
+
+      fetch(`${API_PEDIDOS}/${codigoPedido}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ codigoCliente, descricao, valor, status: statusPedido })
+      })
+      .then(response => response.json())
+      .then(data => {
+        alert(data.mensagem);
+        listarPedidos();
+        document.getElementById('pedidoForm').reset();
+      });
+    });
+
+    function listarPedidos() {
+      fetch(API_PEDIDOS)
+        .then(res => res.json())
+        .then(pedidos => {
+          const lista = document.getElementById('pedidosLista');
+          lista.innerHTML = '';
+          pedidos.forEach(pedido => {
+            let statusTraduzido = pedido.status;
+            if (pedido.status === 'aberto') statusTraduzido = 'Pedido feito aguardando pagamento';
+            if (pedido.status === 'em andamento') statusTraduzido = 'Pedido pago e em preparação';
+            if (pedido.status === 'finalizado') statusTraduzido = 'Pedido atendido e entregue';
+            const div = document.createElement('div');
+            div.className = 'pedido';
+            div.innerHTML = `
+              <strong>Pedido #${pedido.codigoPedido}</strong><br>
+              Cliente: ${pedido.codigoCliente}<br>
+              Descrição: ${pedido.descricao}<br>
+              Valor: R$ ${pedido.valor}<br>
+              Status: ${statusTraduzido}<br>
+            `;
+            lista.appendChild(div);
+          });
+        });
+    }
+
+    listarPedidos();
+  </script>
+</body>
+</html>

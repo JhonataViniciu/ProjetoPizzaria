@@ -1,0 +1,122 @@
+[
+  {
+    "nome": "Mussarela",
+    "ingredientes": "mussarela, molho de tomate, orégano"
+  },
+  {
+    "nome": "Calabresa",
+    "ingredientes": "calabresa fatiada, cebola, mussarela, molho de tomate"
+  },
+  {
+    "nome": "Marguerita",
+    "ingredientes": "mussarela, tomate, manjericão, molho de tomate"
+  },
+  {
+    "nome": "Portuguesa",
+    "ingredientes": "presunto, ovo, cebola, ervilha, pimentão, mussarela, molho"
+  },
+  {
+    "nome": "Frango com Catupiry",
+    "ingredientes": "frango desfiado, catupiry, mussarela, molho"
+  },
+  {
+    "nome": "Quatro Queijos",
+    "ingredientes": "mussarela, catupiry, provolone, parmesão, molho"
+  },
+  {
+    "nome": "Napolitana",
+    "ingredientes": "mussarela, tomate, parmesão, molho, orégano"
+  },
+  {
+    "nome": "Atum",
+    "ingredientes": "atum, cebola, mussarela, molho de tomate"
+  },
+  {
+    "nome": "Toscana",
+    "ingredientes": "linguiça toscana, cebola, mussarela, molho"
+  },
+  {
+    "nome": "Baiana",
+    "ingredientes": "calabresa, pimenta, cebola, mussarela, molho"
+  },
+  {
+    "nome": "Vegetariana",
+    "ingredientes": "tomate, pimentão, cebola, champignon, milho, mussarela"
+  },
+  {
+    "nome": "Brócolis com Bacon",
+    "ingredientes": "brócolis, bacon, mussarela, molho"
+  },
+  {
+    "nome": "Escarola com Bacon",
+    "ingredientes": "escarola refogada, bacon, mussarela"
+  },
+  {
+    "nome": "Milho com Catupiry",
+    "ingredientes": "milho, catupiry, mussarela, molho"
+  },
+  {
+    "nome": "Lombo com Catupiry",
+    "ingredientes": "lombo canadense, catupiry, mussarela"
+  },
+  {
+    "nome": "Palmito",
+    "ingredientes": "palmito, mussarela, molho"
+  },
+  {
+    "nome": "Aliche",
+    "ingredientes": "aliche, mussarela, molho de tomate"
+  },
+  {
+    "nome": "Abobrinha",
+    "ingredientes": "abobrinha fatiada, mussarela, molho"
+  },
+  {
+    "nome": "Caprese",
+    "ingredientes": "mussarela, tomate, manjericão fresco"
+  },
+  {
+    "nome": "Pepperoni",
+    "ingredientes": "pepperoni, mussarela, molho de tomate"
+  },
+  {
+    "nome": "Tomate Seco com Rúcula",
+    "ingredientes": "tomate seco, rúcula, mussarela"
+  },
+  {
+    "nome": "Carne Seca com Catupiry",
+    "ingredientes": "carne seca desfiada, catupiry, mussarela"
+  },
+  {
+    "nome": "Moda da Casa",
+    "ingredientes": "presunto, bacon, cebola, ovos, mussarela"
+  },
+  {
+    "nome": "Mexicana",
+    "ingredientes": "carne moída apimentada, milho, mussarela"
+  },
+  {
+    "nome": "Strogonoff de Frango",
+    "ingredientes": "frango ao molho strogonoff, batata palha, mussarela"
+  },
+  {
+    "nome": "Strogonoff de Carne",
+    "ingredientes": "carne ao molho strogonoff, batata palha, mussarela"
+  },
+  {
+    "nome": "Camarão",
+    "ingredientes": "camarão, molho branco, mussarela"
+  },
+  {
+    "nome": "Alho e Óleo",
+    "ingredientes": "alho frito, azeite, mussarela"
+  },
+  {
+    "nome": "Cheddar com Calabresa",
+    "ingredientes": "cheddar, calabresa, mussarela"
+  },
+  {
+    "nome": "Quatro Estações",
+    "ingredientes": "presunto, champignon, alcachofra, mussarela"
+  }
+]

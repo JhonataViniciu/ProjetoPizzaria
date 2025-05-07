@@ -1,0 +1,23 @@
+[
+  {
+    "codigoPedido": "123456",
+    "codigoCliente": "123244",
+    "descricao": "pizza de peperone",
+    "valor": "1",
+    "status": "aberto"
+  },
+  {
+    "codigoPedido": "1",
+    "codigoCliente": "35",
+    "descricao": "Pizza",
+    "valor": "35",
+    "status": "aberto"
+  },
+  {
+    "codigoPedido": "2",
+    "codigoCliente": "36",
+    "descricao": "teste",
+    "valor": "50",
+    "status": "finalizado"
+  }
+]

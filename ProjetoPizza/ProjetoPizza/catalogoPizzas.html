@@ -1,0 +1,250 @@
+<!-- <!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catálogo de Pizzas</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f7f7f7;
+      margin: 20px;
+      text-align: center;
+    }
+    h1 {
+      color: #d10000;
+    }
+    .pizza {
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin: 10px auto;
+      max-width: 400px;
+      background-color: #fffbe6;
+      border-radius: 10px;
+    }
+    nav a {
+      margin: 0 10px;
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="cadastroCliente.html">Clientes</a>
+    <a href="catalogoPizzas.html">Catálogo</a>
+    <a href="cadastroPedido.html">Pedidos</a>
+    <a href="historicoCliente.html">Histórico</a>
+  </nav>
+
+  <h1>Catálogo de Pizzas</h1>
+  <div id="listaPizzas"></div> -->
+  <!DOCTYPE html>
+  <html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <title>Catálogo de Pizzas</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #fff8f0;
+        margin: 0;
+        padding: 0;
+      }
+  
+      header {
+        background-color: #d35400;
+        color: white;
+        padding: 20px;
+        text-align: center;
+      }
+
+      nav {
+      background-color: #fcefe3;
+      padding: 10px;
+      text-align: center;
+      }
+
+nav a {
+  margin: 0 15px;
+  text-decoration: none;
+  font-weight: bold;
+  color: #333;
+}
+  
+      .catalogo {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+        padding: 30px;
+      }
+  
+      .pizza {
+        background-color: white;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        width: 300px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        transition: transform 0.3s;
+      }
+  
+      .pizza:hover {
+        transform: scale(1.03);
+      }
+  
+      .pizza img {
+        width: 100%;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+      }
+  
+      .pizza-info {
+        padding: 15px;
+      }
+  
+      .pizza-info h3 {
+        margin: 0 0 10px;
+        color: #e67e22;
+      }
+  
+      .pizza-info p {
+        margin: 5px 0;
+      }
+  
+      .preco {
+        font-weight: bold;
+        color: #27ae60;
+      }
+  
+      .btn-escolher {
+        display: inline-block;
+        margin-top: 10px;
+        padding: 8px 12px;
+        background-color: #e67e22;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+      }
+  
+      #pedido {
+        background-color: #fcefe3;
+        padding: 40px;
+        text-align: center;
+      }
+  
+      #pedido h2 {
+        margin-bottom: 20px;
+      }
+  
+      input, select {
+        padding: 10px;
+        width: 300px;
+        max-width: 90%;
+        margin-bottom: 15px;
+      }
+  
+      button {
+        padding: 10px 20px;
+        background-color: #27ae60;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+  
+      button:hover {
+        background-color: #219150;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a href="cadastroCliente.html">Clientes</a>
+      <a href="catalogoPizzas.html">Catálogo</a>
+      <a href="cadastroPedido.html">Pedidos</a>
+      <a href="historicoCliente.html">Histórico</a>
+    </nav>
+
+  <header>
+    <h1>Catálogo de Pizzas</h1>
+  </header>
+  
+  <section class="catalogo">
+    <div class="pizza">
+      <img src="https://via.placeholder.com/300x200?text=Pizza+Calabresa" alt="Pizza Calabresa">
+      <div class="pizza-info">
+        <h3>Pizza de Calabresa</h3>
+        <p>Molho de tomate, calabresa, cebola e orégano.</p>
+        <p class="preco">R$ 39,90</p>
+        <a href="#pedido" class="btn-escolher" onclick="selecionarPizza('Pizza de Calabresa')">Escolher</a>
+      </div>
+    </div>
+  
+    <div class="pizza">
+      <img src="https://via.placeholder.com/300x200?text=Pizza+Marguerita" alt="Pizza Marguerita">
+      <div class="pizza-info">
+        <h3>Pizza Marguerita</h3>
+        <p>Molho de tomate, mussarela, tomate e manjericão.</p>
+        <p class="preco">R$ 42,90</p>
+        <a href="#pedido" class="btn-escolher" onclick="selecionarPizza('Pizza Marguerita')">Escolher</a>
+      </div>
+    </div>
+  
+    <div class="pizza">
+      <img src="https://via.placeholder.com/300x200?text=Pizza+Frango+com+Catupiry" alt="Pizza Frango com Catupiry">
+      <div class="pizza-info">
+        <h3>Frango com Catupiry</h3>
+        <p>Molho de tomate, frango desfiado e catupiry.</p>
+        <p class="preco">R$ 44,90</p>
+        <a href="#pedido" class="btn-escolher" onclick="selecionarPizza('Frango com Catupiry')">Escolher</a>
+      </div>
+    </div>
+  </section>
+  
+  <section id="pedido">
+    <h2>Faça seu Pedido</h2>
+    <form>
+      <label for="pizza">Pizza Escolhida:</label><br>
+      <input type="text" id="pizza" name="pizza" readonly><br>
+    
+      <button type="submit"><a href="cadastroPedido.html">Enviar Pedido</a></button>
+    </form>
+  </section>
+  
+  <script>
+    function selecionarPizza(nome) {
+      document.getElementById('pizza').value = nome;
+    }
+  </script>
+  
+  </body>
+  </html>
+  <script>
+
+  const API_URL = "http://localhost:3000/catalogo";
+
+    fetch('http://localhost:3306/catalogo')
+      .then(res => res.json())
+      .then(pizzas => {
+        const lista = document.getElementById('listaPizzas');
+        pizzas.forEach(pizza => {
+          const div = document.createElement('div');
+          div.className = 'pizza';
+          div.innerHTML = `
+                <p>Id: ${pizza.id}</p>
+                <h3>${pizza.nome}</h3><br>
+                <p>Ingredientes: ${pizza.ingredientes}</p>  
+                <p class="preco">Preço: R$ ${pizza.preco.toFixed(2)}</p> `;
+          lista.appendChild(div);
+        });
+      })
+      .catch(error => {
+                console.error('Erro ao buscar pizzas:', error);
+                pizzaList.innerHTML = '<p>Erro ao carregar o catálogo de pizzas.</p>';
+            });
+  </script>
+</body>
+</html>
